@@ -18,8 +18,9 @@ export default class Chart extends Component {
       .on('value', snapshot => {
         if (snapshot.val() != null) {
           let b = snapshot.val();
-          console.log(b, b.length);
-          this.setState({bpm: b, number: b[b.length - 1]});
+          let array=Object.values(b);
+          //console.log(b, Object.values(b));
+          this.setState({bpm: array});
         }
       });
   }
@@ -35,7 +36,7 @@ export default class Chart extends Component {
     return (
       <View>
         <View style={styles.container}>
-          <CustomView number={this.state.bpm.length!=0?this.state.number:0} />
+          <CustomView number={this.state.bpm.length!=0?this.state.bpm[this.state.bpm.length-1]:0} />
         </View>
 
         <AreaChart
